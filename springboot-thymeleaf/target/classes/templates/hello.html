@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Hello</title>
+</head>
+<body>
+	<p th:text="'Hello！, ' + ${name} + '!'" >3333</p>
+	
+	<a th:href="@{http://blog.csdn.net/zzm8421/article/details/78053123}">绝对路径</a><br/>
+	<a th:href="@{/}">相对路径</a><br/>
+	<a th:href="@{css/bootstrap.min.css}">Content路径默认访问static下的css文件夹</a><br/>
+	
+	<span th:text="'Welcome to application '  + ${name}+'!'"></span><br/>
+	<span th:text="|Welcome to application ${name} !|"></span><br/>
+	
+</body>
+</html>
