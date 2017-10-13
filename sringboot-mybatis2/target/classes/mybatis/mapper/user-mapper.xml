@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzm.test.domain.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.zzm.test.domain.entity.UserEntity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_sex" property="userSex" />
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, user_sex, nick_name
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+	   WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.zzm.test.domain.entity.UserEntity" >
+       INSERT INTO 
+       		users
+       		(user_sex,nick_name) 
+       	VALUES
+       		(#{userSex}, #{nickName})
+    </insert>
+    
+    <update id="update" parameterType="com.zzm.test.domain.entity.UserEntity" >
+       UPDATE 
+       		users 
+       SET 
+       	<if test="userSex != null">user_Sex = #{userSex},</if>
+       	nick_name = #{nickName}
+       WHERE 
+       		id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.Long" >
+       DELETE FROM
+       		 users 
+       WHERE 
+       		 id =#{id}
+    </delete>
+	
+</mapper>
